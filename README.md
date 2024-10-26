@@ -19,63 +19,6 @@
 Перед деплоем предусмотрено автоматическое тестирование проекта.
 
 
-## Локальный запуск проекта:
-
-
-Клонировать репозиторий и перейти в него в командной строке:
-
-```
-git clone <SSH Key>
-```
-
-```
-cd kittygram_final
-```
-
-Cоздать и активировать виртуальное окружение:
-
-```
-python3 -m venv venv
-```
-
-* Если у вас Linux/macOS
-
-    ```
-    source venv/bin/activate
-    ```
-
-* Если у вас windows
-
-    ```
-    source venv/scripts/activate
-    ```
-В корневой директории проекта создать файл .env и скопировать в него данные из .env.example .
-
-Установить зависимости из файла requirements.txt:
-
-```
-python3 -m pip install --upgrade pip
-```
-
-```
-pip install -r requirements.txt
-```
-
-Провести миграции:
-
-```
-python3 manage.py migrate
-```
-
-Запустить локальный сервер:
-
-```
-python3 manage.py runserver
-```
-
-Проект будет доступен по адресу: [http://127.0.0.1:9000/](http://127.0.0.1:9000/)
-
-
 ## Запуск проекта на удалённом сервере через Docker:
 
 Выполнить вход на удаленный сервер.
@@ -110,6 +53,8 @@ sudo nano /etc/nginx/sites-enabled/default
 sudo docker compose -f docker-compose.production.yml pull
 sudo docker compose -f docker-compose.production.yml down
 sudo docker compose -f docker-compose.production.yml up -d
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py makemigrations
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py makemigrations cats
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic --noinput
 sudo docker system prune -a
@@ -119,6 +64,4 @@ sudo docker system prune -a
 
 ## Автор проекта:
 
-[Ксения Тетерчева](https://github.com/GreenVibesOnly)
-
-Всем мяу! :cat2:
+[Ксения Тетерчева](https://github.com/GreenVibesOnly) 🌿
